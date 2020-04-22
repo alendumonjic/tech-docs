@@ -1,0 +1,19 @@
+Here’s an example of how to fetch an AutoPkg update via Terminal.
+
+Fetch updates all updates via Terminal through the recipe list, which shows the applications being installed (Note: If you use Terminal instead of GUI, no email notification will deliver)
+  • autopkg run --recipe-list ~/Library/AutoPkg/recipe_list.plist
+  • Example: test$ autopkg run --recipe-list ~/Library/AutoPkg/recipe_list.plist
+      Processing CitrixWorkspace.pkg...
+      The following new items were downloaded:
+      Download Path
+      -----------                                                                                                           
+      /Users/admin/Library/AutoPkg/Cache/local.pkg.CitrixWorkspace/downloads/Citrix Workspace.dmg            
+      The following packages were copied:
+      Pkg Path                                                                                                      
+      ------                                                                                                   
+      /Users/admin/Library/AutoPkg/Cache/local.pkg.CitrixWorkspace/Scripts/Install Citrix Workspace.pkg  
+      The following packages were built:    
+      Identifier                    Version        Pkg Path                                                                                   
+      --------                    -------        --------                                                                                   
+      com.citrix.workspace.app.pkg  20.02.0        
+      /Users/admin/Library/AutoPkg/Cache/local.pkg.CitrixWorkspace/Citrix_Workspace_20.02.0.pkg  
