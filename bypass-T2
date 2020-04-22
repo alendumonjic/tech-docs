@@ -1,0 +1,21 @@
+Here’s how to enable USB media booting and bypass Apple’s T2 chip on Macs 2018 or later to install macoS Mojave or earlier versions via USB.
+
+1. Create user in Setup Assistant stage on fresh image.
+
+2. If user is not administrator, elevate privileges via System Preferences or Terminal.
+
+3. Enable secure token in Terminal with command: 'sudo diskutil apfs updatePreboot /'. 
+
+4. Restart into Recovery Mode (command r).
+
+5. Under “Utilities,” click “Startup Security Utility”.
+
+6. Log in with admin user's password.
+
+7. Under “Allowed Boot Media,” check “Allow booting from external or removable media”.
+
+8. Under “Disk Utility,” erase both Data and OS partitions to reformat them.
+
+9. Reboot machine with USB image inserted and hold down option key.
+
+10. Install your new OS on the OS partition, “Macintosh HD,” instead of the “- Data” partition.
