@@ -1,0 +1,75 @@
+# Documentation about utilizing autopkg was written for fellow technicians in workplace.
+
+Find Applications
+
+• Find the neccessary application.
+  • Command: autopkg search [application name]
+      • Example: ~ test$ autopkg search Google Chrome
+          Result:  
+          Name                     Repo                 Path                                                            
+          GoogleChrome.pkg.recipe  rtrouton-recipes     GoogleChrome/GoogleChrome.pkg.recipe
+                     
+
+Add Repo
+
+• Once the pkg is identified, add the repo to your AutoPkg.
+    • Command: autopkg repo-add [repo name]
+      • Example: ~ test$ autopkg repo-add rtrouton-recipes
+          Result:
+          Attempting git pull...
+          Already up-to-date.
+          Updated search path: '.'
+          '~/Library/AutoPkg/Recipes'
+          '/Library/AutoPkg/Recipes'
+          '/Users/test/Library/AutoPkg/RecipeRepos/com.github.autopkg.rtrouton-recipes'
+
+
+Make Override
+
+• Because these pkgs (recipes) are not written by us, make a recipe override as a safety measure.
+    • Command: autopkg make-override [application name]
+      • Example: ~ test$ autopkg make-override GoogleChrome.pkg
+          Result: 
+          Override file saved to /Users/test/Library/AutoPkg/RecipeOverrides/GoogleChrome.pkg.recipe
+         
+         
+Get Info
+
+• Get info on the desired pkg for security reasons.
+  • Command: autopkg info [application name]
+    • Example: ~ test$ autopkg info GoogleChrome.pkg
+        Result:
+        Description: Downloads latest Google Chrome disk image and builds a package.
+        Identifier:  local.pkg.GoogleChrome
+        Munki import recipe: False
+        Has check phase:     True
+        Builds package:      True
+        Recipe file path:    /Users/test/Library/AutoPkg/RecipeOverrides/GoogleChrome.pkg.recipe
+        Parent recipe(s):    /Users/test/Library/AutoPkg/RecipeRepos/com.github.autopkg.recipes/GoogleChrome/GoogleChrome.pkg.recipe                
+        /Users/admin/Library/AutoPkg/RecipeRepos/com.github.autopkg.recipes/GoogleChrome/GoogleChrome.download.recipe
+        Input values: 'DOWNLOAD_URL': 'https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg',
+        'NAME': 'GoogleChrome'
+        
+• Review the following:
+  • Check the description to see what pkg does.
+  • Ensure parent recipes are from  same rep.
+  • Ensure URL under “Input values” is https; test by pasting URL in a browser.
+  
+  
+Add Pkg
+
+• Once repo's added and pkg's trusted, add the pkg.
+  • Command: autopkg run [application name]
+    • Example: ~ test$ autopkg run GoogleChrome.pkg
+      Result:
+      Processing GoogleChrome.pkg...
+      The following new items were downloaded:
+      Download Path
+      ------------
+      /Users/test/Library/AutoPkg/Cache/local.pkg.GoogleChrome/downloads/GoogleChrome.dmg
+      The following packages were built:
+      Identifier         Version        Pkg Path
+      ---------         -------        --------
+      com.google.Chrome  80.0.3987.132  /Users/test/Library/AutoPkg/Cache/local.pkg.GoogleChrome/GoogleChrome-80.0.3987.132.pkg
+
+• We can now see  pkg downloaded as well as the override and the repo. Test the application by installing it before deploying it.
